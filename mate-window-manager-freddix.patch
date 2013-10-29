@@ -1,0 +1,21 @@
+diff -aurN mate-window-manager-1.6.2.orig/src/org.mate.marco.gschema.xml mate-window-manager-1.6.2/src/org.mate.marco.gschema.xml
+--- mate-window-manager-1.6.2.orig/src/org.mate.marco.gschema.xml	2013-10-27 21:42:53.422004512 +0100
++++ mate-window-manager-1.6.2/src/org.mate.marco.gschema.xml	2013-10-27 21:44:32.581814176 +0100
+@@ -96,7 +96,7 @@
+       <description>The time delay before raising a window if auto_raise is set to true. The delay is given in thousandths of a second.</description>
+     </key>
+     <key name="theme" type="s">
+-      <default>'Menta'</default>
++      <default>'Greybird'</default>
+       <summary>Current theme</summary>
+       <description>The theme determines the appearance of window borders, titlebar, and so forth.</description>
+     </key>
+@@ -137,7 +137,7 @@
+       <description>Tells Marco how to implement the visual indication that the system bell or another application 'bell' indicator has been rung.  Currently there are two valid values, "fullscreen", which causes a fullscreen white-black flash, and "frame_flash" which causes the titlebar of the application which sent the bell signal to flash.  If the application which sent the bell is unknown (as is usually the case for the default "system beep"), the currently focused window's titlebar is flashed.</description>
+     </key>
+     <key name="compositing-manager" type="b">
+-      <default>false</default>
++      <default>true</default>
+       <summary>Compositing Manager</summary>
+       <description>Determines whether Marco is a compositing manager.</description>
+     </key>
