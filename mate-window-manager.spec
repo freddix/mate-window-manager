@@ -1,11 +1,13 @@
 Summary:	MATE window manager
 Name:		mate-window-manager
 Version:	1.6.2
-Release:	4
+Release:	5
 License:	GPL v2+
 Group:		X11/Window Managers
 Source0:	http://pub.mate-desktop.org/releases/1.6/%{name}-%{version}.tar.xz
 # Source0-md5:	8f6ef12e31d74840aa3db7275149907d
+Source1:	http://art.gnome.org/download/themes/metacity/1148/MCity-Simplebox.tar.gz
+# Source1-md5:	033c5509bb4c573001fb7fef490f8bff
 Patch0:		%{name}-freddix.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -17,7 +19,6 @@ BuildRequires:	pkg-config
 BuildRequires:	startup-notification-devel
 Requires(post,postun):	glib-gio-gsettings
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	metacity-theme-greybird
 Provides:	window-manager
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -48,7 +49,7 @@ Requires:	%{name} = %{version}-%{release}
 Basic MATE window manager themes.
 
 %prep
-%setup -q
+%setup -q -a1
 %patch0 -p1
 
 %build
@@ -73,6 +74,8 @@ install -d $RPM_BUILD_ROOT%{_datadir}/xml/marco
 	DESTDIR=$RPM_BUILD_ROOT
 
 install doc/marco-theme.dtd $RPM_BUILD_ROOT%{_datadir}/xml/marco
+
+cp -ar Simplebox $RPM_BUILD_ROOT%{_datadir}/themes
 
 %{__rm} $RPM_BUILD_ROOT%{_datadir}/MateConf/gsettings/*.convert
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
@@ -99,15 +102,14 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/marco-message
 %attr(755,root,root) %{_bindir}/marco-theme-viewer
 %attr(755,root,root) %{_bindir}/marco-window-demo
-
-%{_datadir}/%{name}
 %{_datadir}/glib-2.0/schemas/org.mate.marco.gschema.xml
 %{_datadir}/mate-control-center/keybindings/*.xml
-%{_datadir}/xml/marco
-%{_mandir}/man1/marco*.1*
-
+%{_datadir}/mate-window-manager
 %{_datadir}/mate/wm-properties/marco-wm.desktop
+%{_datadir}/themes/Simplebox
+%{_datadir}/xml/marco
 %{_desktopdir}/marco.desktop
+%{_mandir}/man1/marco*.1*
 
 %files themes
 %defattr(644,root,root,755)
